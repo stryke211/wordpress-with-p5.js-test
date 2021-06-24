@@ -1,0 +1,16 @@
+{
+  "version": "1.3.6",
+  "revision": 41,
+  "count": {
+    "sketches": 1,
+    "folders": 0
+  },
+  "structure": [
+    {
+      "name": "Circle_bezier_2_lines_together",
+      "mod": 1624553928044,
+      "type": "sketch",
+      "code": "let t;\nlet x;\nlet y;\nlet a;\nlet b;\nlet x2;\nlet y2;\n\nlet e;\nlet f;\nlet e2;\nlet f2;\nlet z\nlet z2\n\nfunction setup() {\n\tcreateCanvas(windowWidth, windowHeight);\n\t\tbackground(250)\n}\n\nfunction draw() {\n\n\t\n\t\n\t\n\t//ellipse(0,height/2, width, height);\n\t//noFill();\n\tnoFill()\n\tnoStroke()\n\tbezier(0,0, width*0.5, height*0.25, width*0.5, height*0.75, 0, height);\n\tlet steps = 100;\n\t//fill(255);\n\tfor (let i = 0; i <= steps; i++) {\n\tlet t = i/ steps;\n\t// Get the location of the point\n\tlet x = bezierPoint(0,width*0.5, width*0.5,0, t);\n\tlet y = bezierPoint(0, height*0.25, height*0.75, height,t);\n\t\n\tlet x2 = bezierPoint(0,width*0.5, width*0.5,0, t);\n\tlet y2 = bezierPoint(0, height*0.25, height*0.75, height,t);\n\t\n\t// Get the tangent points\n\t\n\tlet tx = bezierTangent(width*0.5,width*0.5, width*0.5,0, t);\n\tlet ty = bezierTangent(0, height*0.25, height*0.75, 0,t);\n\tlet tx2 = bezierTangent(width*0.5 ,width*0.5, width*0.5,0, t);\n\tlet ty2 = bezierTangent(0, height*0.5, height*0.5, 0,t);\n\t\n\t// Calculate an angle from the tangent points\n\tlet a = atan2(ty2, tx2);\n\ta += PI;\n\tlet b = atan2(ty, tx);\n\tb +=PI;\n\t  \n\t  stroke(0);\n\t  line(x, y, cos(b) * width + x, sin(b) * 500 + y);\n\t  line(x2, y2, cos(a) * width + x2, sin(a) * 500 + y2);\n\t  // The following line of code makes a line\n\t  // inverse of the above line\n\t  //line(x, y, cos(a)*-30 + x, sin(a)*-30 + y);\n\t  stroke(0);\n\t  //ellipse(x, y, 5, 5);\n\t  \n}\n\n\n\n\n\nnoFill();\n\t//stroke(0)\n\t//noStroke()\n\tbezier(width, 0, width*0.25, height*0.5, width*0.5, height*0.75, width, height);\n//stroke(0);\nlet steps2 = 100;\nfor (let i = 0; i <= steps2; i++) {\n  let q = i / steps2;\n  let e = bezierPoint(width, width*0.25, width*0.5, width, q);\n  let f = bezierPoint(0, height*0.5, height*0.75, height, q);\n  let e2 = bezierPoint(width, width*0.25, width*0.5, width, q);\n  let f2 = bezierPoint(0, height*0.5, height*0.75, height, q);\n  \n  let qe = bezierTangent(0, width, width*0.25, width*2, q);\n  let qf = bezierTangent(height, height*0.5, height*0.75, height, q);\n  let qe2 = bezierTangent(width, width*0.25, width*0.5, width, q);\n  let qf2 = bezierTangent(0, 0, height*0.75, height, q);\n  \n  let z = atan2(qe, qf);\n  z += HALF_PI;\n  line(e, f, cos(z) * width + e, sin(z) * 500 + f);\n  \n  let z2 = atan2 (qf2, qe2);\n  line(e2, f2, cos(z2) * width + e2, sin(z2) * 1000 + f2);\n}\n\n\n\n\n}"
+    }
+  ]
+}
